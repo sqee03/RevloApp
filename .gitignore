@@ -1,0 +1,19 @@
+# OS generated files #
+#######################
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+.idea
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# NPM and Bower packages #
+##########################
+node_modules/
+bower_components/
+
+# Build files #
+###############
+dist
