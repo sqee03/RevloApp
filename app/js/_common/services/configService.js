@@ -11,10 +11,13 @@ angular.module('revloApp')
 
         // SET config
         function setConfig() {
-            $http.get('json/config.json').success(function(json) {
+            console.log('loading config');
+            $http.get('json/config.json').then(function(json) {
                 config = json;
-            }).error(function (error) {
+                console.info('setting config: ', config);
+            }, function(error) {
                 growl.error('Failed to load app config');
+                console.log('failed')
             });
         };
 

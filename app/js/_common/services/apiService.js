@@ -8,13 +8,19 @@ angular.module('revloApp')
 
     	// console.info("- service 'apiFactory' loaded");
 
+        // Get API key
+        function getAPIkey() {
+            return configService.getConfig().api_key;
+        };
+
         // Get data from API
         function getData(url) {
             var d = $q.defer();
 
             $http({
                     method: 'GET',
-                    url: url
+                    url: url,
+                    headers: {'Authorization': 'apikey=' + getAPIkey()}
                 })
                 .success(function (data) {
                     d.resolve(data);

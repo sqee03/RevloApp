@@ -24,7 +24,7 @@ angular.module('revloApp', [
         'components',
 
         // App
-        'playerInfo',
+        'rewards',
     ])
 
     .config(
@@ -33,33 +33,44 @@ angular.module('revloApp', [
             $qProvider.errorOnUnhandledRejections(false);
 
             // Routing
-            $stateProvider
                 // Init config files
-                .state('app', {
+                var root = {
+                    name: 'app',
                     abstract: true,
-                    url: '',
+                    url: '^',
                     template: '<ui-view/>',
+                    // component: 'app',
                     resolve: {
                         config: function (configService) {
                             return configService.setConfig();
                         },
                         dataContract: function (dataContractService) {
-                            dataContractService.setDataContract();
+                            return dataContractService.setDataContract();
                         }
                     }
-                })
+                }
                 // Starting page
-                .state({
-                    name: 'home',
+                var home = {
+                    name: 'app.home',
                     url: '/',
+                    parent: 'app',
                     templateUrl: 'views/home.html'
-                })
+                }
                 // Test page
-                .state({
-                    name: 'test',
+                var test = {
+                    name: 'app.test',
                     url: '/test',
+                    parent: 'app',
                     templateUrl: 'views/test.html'
-                })
+                }
                 // Default redirect
                 $urlRouterProvider.otherwise('/');
+
+                $stateProvider.state(root);
+                $stateProvider.state(home);
+                $stateProvider.state(test);
+    })
+
+    .run(function($rootScope) {
+        $rootScope.$on("$stateChangeError", console.log.bind(console));
     });
