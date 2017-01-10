@@ -3,7 +3,7 @@
 angular.module('revloApp')
 
 .factory('dataContractService',
-    function($http, configService, growl) {
+    function($http, $q, configService, growl) {
         // List of API Urls
         var dataContract = {
             'rewards': {}
@@ -16,25 +16,34 @@ angular.module('revloApp')
 
         // SET data contract
         function setDataContract() {
+            var d = $q.defer();
+
             $http.get('json/revloDataContract.json').then(function(json) {
                 // Base URL parts
-                var url_rewards = json.api.url + json.rewards.url;
+                var baseUrl = json.data.api.url;
 
                 // Rewards
-                dataContract['rewards'] = url_rewards + '?' + json.api.paging;
-                console.info('setting contract: ', dataContract);
-            }, function(error) {
-                growl.error('Failed to load data contract');
-            });
-        };
+                dataContract.rewards = baseUrl + json.data.rewards.url;
+                // dataContract.rewards = 'https://api.revlo.co/1/rewards';
 
-        // GET data contract
-        function getDataContract() {
-            return dataContract;
+                d.resolve(dataContract);
+            }).catch(function(error) {
+                growl.error('Failed to load data contract');
+                d.reject(error);
+            });
+
+            return d.promise;
         };
 
         return {
-            getDataContract: getDataContract,
+            get: function(section) {
+                if(dataContract[section]) {
+                    return dataContract[section];
+                }
+                else {
+                    console.error('Wrong contract section has been requested.')
+                }
+            },
             setDataContract: setDataContract
         };
 });

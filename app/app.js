@@ -28,7 +28,7 @@ angular.module('revloApp', [
     ])
 
     .config(
-        function($stateProvider, $urlRouterProvider, $qProvider) {
+        function($stateProvider, $urlRouterProvider, $qProvider, $httpProvider) {
             // Workaround for routing errors
             $qProvider.errorOnUnhandledRejections(false);
 
@@ -37,10 +37,9 @@ angular.module('revloApp', [
                 var root = {
                     name: 'app',
                     abstract: true,
-                    url: '^',
                     template: '<ui-view/>',
-                    // component: 'app',
                     resolve: {
+                        Config: 'configService',
                         config: function (configService) {
                             return configService.setConfig();
                         },
@@ -71,6 +70,6 @@ angular.module('revloApp', [
                 $stateProvider.state(test);
     })
 
-    .run(function($rootScope) {
+    .run(function($rootScope, dataContractService) {
         $rootScope.$on("$stateChangeError", console.log.bind(console));
     });

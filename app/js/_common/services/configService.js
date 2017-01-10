@@ -3,7 +3,7 @@
 angular.module('revloApp')
 
 .factory('configService',
-    function($http, growl) {
+    function($http, $q, growl) {
 
         // console.info("- service 'configService' loaded");
 
@@ -11,19 +11,21 @@ angular.module('revloApp')
 
         // SET config
         function setConfig() {
-            console.log('loading config');
+            var d = $q.defer();
+
             $http.get('json/config.json').then(function(json) {
                 config = json;
-                console.info('setting config: ', config);
-            }, function(error) {
+                d.resolve(config);
+            }).catch(function(error) {
                 growl.error('Failed to load app config');
-                console.log('failed')
             });
+
+            return d.promise;
         };
 
         // GET config
         function getConfig() {
-            return config;
+            return config
         };
 
         return {

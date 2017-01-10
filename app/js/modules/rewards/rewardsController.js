@@ -7,10 +7,10 @@ angular.module('rewards')
         // Variables
         $scope.rewards = null;
 
-        // getRewards();
+        getRewards(1);
 
-        function getRewards() {
-            rewardsService.getRewards().then(function(rewardsData) {
+        function getRewards(paging) {
+            rewardsService.getRewards(paging).then(function(rewardsData) {
                 $scope.rewards = rewardsData;
                 console.log('rewards: ', rewardsData)
             }, function(error) {

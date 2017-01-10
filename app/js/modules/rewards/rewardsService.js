@@ -11,16 +11,23 @@ angular.module('rewards')
          * Get rewards info
          *
          * @memberOf module:rewards
-         * @returns {Obejct} rewards info
+         * @param {Number=} number - page number
+         * @returns {Object} rewards info
          */
-        function getRewards() {
+        function getRewards(page) {
             var d = $q.defer();
+            var params;
+
+            // Check if paging is requested
+            if(page) {
+                params = {page: page}
+            }
 
             // Check if data are already cached
             if(!cachedRewards) {
                 // Fetch new data
-                console.log(dataContractService.getDataContract().rewards);
-                apiCalls.getData(dataContractService.getDataContract().rewards).then(function(apiData) {
+                console.log('rewards url: ', dataContractService.get('rewards'));
+                apiCalls.getData(dataContractService.get('rewards'), params).then(function(apiData) {
                     if (apiData) {
                         cachedRewards = apiData.data; // Cache response
                         d.resolve(apiData.data);
