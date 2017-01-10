@@ -14,15 +14,17 @@ angular.module('revloApp')
         };
 
         // Get data from API
-        function getData(url, request) {
+        function getData(url, params) {
             var d = $q.defer();
 
-            $http({
-                    method: 'GET',
-                    url: url,
-                    data: JSON.stringify(request),
-                    headers: {'x-api-key': getAPIkey()}
-                })
+            var config = {
+                method: 'GET',
+                url: url,
+                params: ( params != null ) ? params : undefined,
+                headers: {'x-api-key': getAPIkey()}
+            }
+
+            $http(config)
                 .then(function (data) {
                     d.resolve(data);
                 })

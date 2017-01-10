@@ -11,7 +11,7 @@ angular.module('rewards')
          * Get rewards info
          *
          * @memberOf module:rewards
-         * @param {Number=} number - page number
+         * @param {Number} [page=1] number - page number
          * @returns {Object} rewards info
          */
         function getRewards(page) {
@@ -26,7 +26,6 @@ angular.module('rewards')
             // Check if data are already cached
             if(!cachedRewards) {
                 // Fetch new data
-                console.log('rewards url: ', dataContractService.get('rewards'));
                 apiCalls.getData(dataContractService.get('rewards'), params).then(function(apiData) {
                     if (apiData) {
                         cachedRewards = apiData.data; // Cache response
