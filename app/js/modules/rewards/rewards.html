@@ -1,4 +1,10 @@
 <div>
-    <h2>rewards</h2>
-    <pre>{{rewards | json}}</pre>
+    <h2>Rewards:</h2>
+    <ul>
+        <li ng-repeat="reward in rewards" class="reward">
+            <h3 ng-click="isCollapsed = !isCollapsed">{{reward.title}}</h3>
+            <img ng-if="reward.img_url" src="{{reward.img_url}}" alt="reward.description" />
+            <pre ng-show="isCollapsed">{{reward | json}}</pre>
+        </li>
+    </ul>
 </div>

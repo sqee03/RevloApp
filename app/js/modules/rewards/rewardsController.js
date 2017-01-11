@@ -6,6 +6,7 @@ angular.module('rewards')
     function ($scope, rewardsService) {
         // Variables
         $scope.rewards = null;
+        $scope.isCollapsed = false;
 
         getRewards();
 
