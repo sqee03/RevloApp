@@ -25,6 +25,7 @@ angular.module('revloApp', [
 
         // App
         'rewards',
+        'user'
     ])
 
     .config(
@@ -55,19 +56,27 @@ angular.module('revloApp', [
                     parent: 'app',
                     templateUrl: 'views/home.html'
                 }
-                // Test page
-                var test = {
-                    name: 'app.test',
-                    url: '/test',
+                // Rewards
+                var rewards = {
+                    name: 'app.rewards',
+                    url: '/rewards',
                     parent: 'app',
-                    templateUrl: 'views/test.html'
+                    templateUrl: 'views/rewards.html'
+                }
+                // User
+                var user = {
+                    name: 'app.user',
+                    url: '/user',
+                    parent: 'app',
+                    templateUrl: 'views/user.html'
                 }
                 // Default redirect
                 $urlRouterProvider.otherwise('/');
 
                 $stateProvider.state(root);
                 $stateProvider.state(home);
-                $stateProvider.state(test);
+                $stateProvider.state(rewards);
+                $stateProvider.state(user);
     })
 
     .run(function($rootScope, dataContractService) {

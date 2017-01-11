@@ -6,7 +6,8 @@ angular.module('revloApp')
     function($http, $q, configService, growl) {
         // List of API Urls
         var dataContract = {
-            'rewards': {}
+            'rewards': undefined,
+            'user': {}
         };
 
         // Get API key
@@ -24,7 +25,10 @@ angular.module('revloApp')
 
                 // Rewards
                 dataContract.rewards = baseUrl + json.data.rewards.url;
-                // dataContract.rewards = 'https://api.revlo.co/1/rewards';
+
+                // User
+                dataContract.user.base = baseUrl + json.data.user.url + '/';
+                dataContract.user.points = '/' + json.data.user.points;
 
                 d.resolve(dataContract);
             }).catch(function(error) {
@@ -41,7 +45,7 @@ angular.module('revloApp')
                     return dataContract[section];
                 }
                 else {
-                    console.error('Wrong contract section has been requested.')
+                    console.error('Wrong contract section has been requested: ', section)
                 }
             },
             setDataContract: setDataContract
