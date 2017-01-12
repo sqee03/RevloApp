@@ -1,0 +1,9 @@
+<div>
+    <ul>
+        <li ng-repeat="user in hallOfFame">
+            <h3>{{user.fan}}</h3>
+            Points earned by watching: {{user.total_points}}<br />
+            Watched stream for: {{user.total_points | time:'mm':'dd d, hh h, mm m':false}}<br />
+        </li>
+    </ul>
+</div>

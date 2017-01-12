@@ -10,9 +10,11 @@ angular.module('filters')
          * Convert minutes to different time formats
          *
          * @memberOf module:filters
-         * @param {Number} number to round
-         * @param {Number} number of decimal places
-         * @returns {Number} rounded number
+         * @param {Number} time - time to convert
+         * @param {String} [unit=ss] - units of converted time
+         * @param {String} [format=hh:mm:ss] - conversion format
+         * @param {Boolean} [padding=true] - if padding should be enabled
+         * @returns {String} formatted time
          */
         var conversions = {
             'ss': angular.identity,
@@ -31,8 +33,8 @@ angular.module('filters')
         return function(value, unit, format, isPadded) {
             var totalSeconds = conversions[unit || 'ss'](value),
                 dd = Math.floor(totalSeconds / 86400),
-                hh = Math.floor(totalSeconds / 3600),
-                mm = Math.floor((totalSeconds % 3600) / 60),
+                hh = Math.floor((totalSeconds % 86400) / 3600),
+                mm = Math.floor(((totalSeconds % 86400) % 3600) / 60),
                 ss = totalSeconds % 60;
 
             format = format || 'hh:mm:ss';

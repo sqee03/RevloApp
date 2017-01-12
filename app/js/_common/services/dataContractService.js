@@ -5,18 +5,30 @@ angular.module('revloApp')
 .factory('dataContractService',
     function($http, $q, configService, growl) {
         // List of API Urls
-        var dataContract = {
+        var revloDataContract = {
             'rewards': undefined,
             'user': {}
         };
 
-        // Get API key
-        function getAPIkey() {
-            return configService.getConfig().api_key;
+        // SET Facebook data contract
+        function setFbDataContract() {
+            var d = $q.defer();
+
+            $http.get('json/fbDataContract.json').then(function(json) {
+                // Base URL parts
+                var baseUrl = json.data.api.url + '/' + json.data.api.version;
+
+                d.resolve(dataContract);
+            }).catch(function(error) {
+                growl.error('Failed to load FB data contract');
+                d.reject(error);
+            });
+
+            return d.promise;
         };
 
-        // SET data contract
-        function setDataContract() {
+        // SET Revlo data contract
+        function setRevloDataContract() {
             var d = $q.defer();
 
             $http.get('json/revloDataContract.json').then(function(json) {
@@ -24,15 +36,15 @@ angular.module('revloApp')
                 var baseUrl = json.data.api.url;
 
                 // Rewards
-                dataContract.rewards = baseUrl + json.data.rewards.url;
+                revloDataContract.rewards = baseUrl + json.data.rewards.url;
 
                 // User
-                dataContract.user.base = baseUrl + json.data.user.url + '/';
-                dataContract.user.points = '/' + json.data.user.points;
+                revloDataContract.user.base = baseUrl + json.data.user.url + '/';
+                revloDataContract.user.points = '/' + json.data.user.points;
 
-                d.resolve(dataContract);
+                d.resolve(revloDataContract);
             }).catch(function(error) {
-                growl.error('Failed to load data contract');
+                growl.error('Failed to load Revlo data contract');
                 d.reject(error);
             });
 
@@ -40,14 +52,22 @@ angular.module('revloApp')
         };
 
         return {
-            get: function(section) {
-                if(dataContract[section]) {
-                    return dataContract[section];
+            getRevlo: function(section) {
+                if(revloDataContract[section]) {
+                    return revloDataContract[section];
                 }
                 else {
                     console.error('Wrong contract section has been requested: ', section)
                 }
             },
-            setDataContract: setDataContract
+            getFb: function(section) {
+                if(fbDataContract[section]) {
+                    return fbDataContract[section];
+                }
+                else {
+                    console.error('Wrong contract section has been requested: ', section)
+                }
+            },
+            setDataContract: setRevloDataContract
         };
 });

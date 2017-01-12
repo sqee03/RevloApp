@@ -25,7 +25,8 @@ angular.module('revloApp', [
 
         // App
         'rewards',
-        'user'
+        'user',
+        'hallOfFame'
     ])
 
     .config(

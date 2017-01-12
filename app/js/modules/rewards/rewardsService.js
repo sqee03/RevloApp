@@ -16,6 +16,7 @@ angular.module('rewards')
          */
         function getRewards(page) {
             var d = $q.defer();
+            var url = dataContractService.getRevlo('rewards');
             var params;
 
             // Check if paging is requested
@@ -26,7 +27,7 @@ angular.module('rewards')
             // Check if data are already cached
             if(!cachedRewards) {
                 // Fetch new data
-                apiCalls.getData(dataContractService.get('rewards'), params).then(function(apiData) {
+                apiCalls.getRevloData(url, params).then(function(apiData) {
                     if (apiData) {
                         cachedRewards = apiData.data; // Cache response
                         d.resolve(apiData.data);

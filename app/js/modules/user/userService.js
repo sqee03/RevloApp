@@ -16,11 +16,12 @@ angular.module('user')
          */
         function getUser(user) {
             var d = $q.defer();
+            var url = dataContractService.getRevlo('user').base + user + dataContractService.getRevlo('user').points;
 
             // Check if data are already cached
             if(!cachedUser) {
                 // Fetch new data
-                apiCalls.getData(dataContractService.get('user').base + user + dataContractService.get('user').points).then(function(apiData) {
+                apiCalls.getRevloData(url).then(function(apiData) {
                     if (apiData) {
                         cachedUser = apiData.data; // Cache response
                         d.resolve(apiData.data);
@@ -40,14 +41,7 @@ angular.module('user')
             return d.promise;
         };
 
-        function watchedFor(points) {
-            var watched = points / 60;
-
-            return watched
-        }
-
         return {
-            getUser: getUser,
-            watchedFor: watchedFor
+            getUser: getUser
         }
 });

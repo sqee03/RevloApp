@@ -8,21 +8,38 @@ angular.module('revloApp')
 
     	// console.info("- service 'apiFactory' loaded");
 
-        // Get API key
-        function getAPIkey() {
-            return configService.getConfig().data.api_key;
+        // Get API keys
+        function getRevloAPIkey() {
+            return configService.getConfig().data.revlo_api_key;
+        };
+        function getFbAPIkey() {
+            return configService.getConfig().data.fb_app_id;
         };
 
-        // Get data from API
-        function getData(url, params) {
-            var d = $q.defer();
+        // Get data from FB API
+        function getFbData(url) {
+            var config = {
+                method: 'GET',
+                url: url,
+                headers: {'x-api-key': getFbAPIkey()}
+            }
+            return makeRequest(url, config)
+        }
 
+        // Get data from Revlo API
+        function getRevloData(url, params) {
             var config = {
                 method: 'GET',
                 url: url,
                 params: ( params != null ) ? params : undefined,
-                headers: {'x-api-key': getAPIkey()}
+                headers: {'x-api-key': getRevloAPIkey()}
             }
+            return makeRequest(url, config)
+        }
+
+        // Make Http request
+        function makeRequest(url, config) {
+            var d = $q.defer();
 
             $http(config)
                 .then(function (data) {
@@ -37,6 +54,7 @@ angular.module('revloApp')
         };
 
     	return {
-    		getData: getData
+    		getRevloData: getRevloData,
+            getFbData: getFbData
     	}
 });
