@@ -1,0 +1,4 @@
+<div>
+    <input type="text" placeholder="Twitch name" ng-model="userName" ng-keydown="$event.which === 13 && getUserInfo(userName)" />
+    <input type="button" value="Get user info" ng-click="getUserInfo(userName)" />
+</div>

@@ -40,7 +40,14 @@ angular.module('user')
             return d.promise;
         };
 
+        function watchedFor(points) {
+            var watched = points / 60;
+
+            return watched
+        }
+
         return {
-            getUser: getUser
+            getUser: getUser,
+            watchedFor: watchedFor
         }
 });

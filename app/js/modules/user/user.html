@@ -1,4 +1,12 @@
 <div>
+    <namepicker></namepicker>
     <h3>{{user.fan}}</h3>
     <pre>{{user | json}}</pre>
+
+    <div ng-show="user">
+        <h4>Summary</h4>
+        <ul>
+            <li>Time spent by watching stream: {{user.total_points | time:'mm':'ddd hhh mmm':false}}</li>
+        </ul>
+    </div>
 </div>
