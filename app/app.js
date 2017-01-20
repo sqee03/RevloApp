@@ -4,6 +4,7 @@ angular.module('revloApp', [
         // Libraries
         'ui.router',
         'ngAnimate',
+        'countUpModule', // animated number counter
         'momentjs', // custom req. library
         'lodash', // custom req. library
 
@@ -23,7 +24,7 @@ angular.module('revloApp', [
         // Common components
         'components',
 
-        // App
+        // App modules
         'rewards',
         'user',
         'hallOfFame'
@@ -71,6 +72,13 @@ angular.module('revloApp', [
                     parent: 'app',
                     templateUrl: 'views/user.html'
                 }
+                // Hall of fame
+                var hallOfFame = {
+                    name: 'app.hof',
+                    url: '/hall-of-fame',
+                    parent: 'app',
+                    templateUrl: 'views/hall-of-fame.html'
+                }
                 // Default redirect
                 $urlRouterProvider.otherwise('/');
 
@@ -78,6 +86,7 @@ angular.module('revloApp', [
                 $stateProvider.state(home);
                 $stateProvider.state(rewards);
                 $stateProvider.state(user);
+                $stateProvider.state(hallOfFame);
     })
 
     .run(function($rootScope, dataContractService) {

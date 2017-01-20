@@ -9,8 +9,8 @@ gulp.task('inject', function () {
     var target = gulp.src(config.source.tpl.main);
     var vendor_js = gulp.src(config.build.vendor_js)
                     .pipe(order([
-                        'angular.js',
                         'jquery.js',
+                        'angular.js',
                         '*.js'
                     ]))
     var vendor_css = gulp.src(config.build.vendor_css, {read: false});
