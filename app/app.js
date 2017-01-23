@@ -27,7 +27,8 @@ angular.module('revloApp', [
         // App modules
         'rewards',
         'user',
-        'hallOfFame'
+        'hallOfFame',
+        'weather'
     ])
 
     .config(
@@ -79,6 +80,13 @@ angular.module('revloApp', [
                     parent: 'app',
                     templateUrl: 'views/hall-of-fame.html'
                 }
+                // Weather
+                var weather = {
+                    name: 'app.weather',
+                    url: '/weather',
+                    parent: 'app',
+                    templateUrl: 'views/weather.html'
+                }
                 // Default redirect
                 $urlRouterProvider.otherwise('/');
 
@@ -87,6 +95,7 @@ angular.module('revloApp', [
                 $stateProvider.state(rewards);
                 $stateProvider.state(user);
                 $stateProvider.state(hallOfFame);
+                $stateProvider.state(weather);
     })
 
     .run(function($rootScope, dataContractService) {

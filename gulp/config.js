@@ -15,7 +15,7 @@ module.exports = {
         },
         json: 'app/**/*.json',
         images: {
-            src: 'app/img/*.*',
+            src: 'app/img/**/*.*',
             favicon: 'app/favicon.ico'
         }
     },

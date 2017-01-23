@@ -44,3 +44,31 @@ h1 {
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
 /* close commented backslash hack */
+
+
+/*
+* ------------------------------------
+*    Header
+* ------------------------------------
+*/
+$header-height: 70px;
+
+header {
+	position: fixed;
+	left: 0;
+	top: 50px;
+	height: $header-height;
+	padding-left: $header-height + ($header-height/4);
+	background: url('../img/logo.png') no-repeat 10px center;
+	background-size: auto 95%;
+	em {
+		display: block;
+		height: 100%;
+		padding: 0 20px;
+		line-height: $header-height;
+		font-style: none;
+		font-size: 175%;
+		border-left: 2px solid #FE07E8;
+		background-color: rgba(254,7,232,0.15);
+	}
+}

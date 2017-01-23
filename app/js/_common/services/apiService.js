@@ -37,6 +37,16 @@ angular.module('revloApp')
             return makeRequest(url, config)
         }
 
+        // Get data from OpenWeatherMap API
+        function getWeatherData(url, params) {
+            var config = {
+                method: 'GET',
+                url: url,
+                params: ( params != null ) ? params : undefined
+            }
+            return makeRequest(url, config)
+        }
+
         // Make Http request
         function makeRequest(url, config) {
             var d = $q.defer();
@@ -55,6 +65,7 @@ angular.module('revloApp')
 
     	return {
     		getRevloData: getRevloData,
+            getWeatherData: getWeatherData,
             getFbData: getFbData
     	}
 });

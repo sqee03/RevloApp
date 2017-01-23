@@ -7,6 +7,7 @@ gulp.task('watch', function() {
     gulp.watch(config.source.sass.src, ['sass']);
     gulp.watch(config.source.js.src, ['js']);
     gulp.watch(config.source.json, ['json']);
+    gulp.watch(config.source.images.src, ['images']);
     gulp.watch(config.source.tpl.src, ['html2js']);
     gulp.watch(config.source.tpl.main, ['inject']);
 });
@@ -24,6 +25,11 @@ gulp.task('watch-js', function() {
 // Watch JSON
 gulp.task('watch-json', function() {
     gulp.watch(config.source.json, ['json']);
+});
+
+// Watch IMG
+gulp.task('watch-img', function() {
+    gulp.watch(config.source.imgages.src, ['images']);
 });
 
 // Html watch

@@ -4,7 +4,14 @@
 * ------------------------------------
 */
 @mixin plastic-effect {
-    box-shadow: 0px 16px 20px 0px rgba(0, 0, 0, .3), inset 0px 2px 1px 1px rgba(255,255,255,0.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+    // box-shadow: 0px 16px 20px 0px rgba(0, 0, 0, .3), inset 0px 2px 1px 1px rgba(255,255,255,0.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+
+    text-shadow: -1px -1px 0px rgba(255,255,255,0.1), 1px 1px 2px rgba(0,0,0,1);
+    box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3), 
+                inset 3px 15px 45px rgba(255,255,255,0.1),
+                inset -1px -1px 2px rgba(0,0,0,0.5), 
+                inset -3px -15px 45px rgba(0,0,0,0.2),
+                1px 5px 30px -4px rgba(0,0,0,1);
 }
 
 .hall-of-fame {
@@ -12,13 +19,18 @@
     width: 100%;
     height: 100%;
     min-height: 100%;
-    padding: 30px 150px;
+    padding: 30px 200px;
     text-align: center;
     background: #555 linear-gradient(to left top, #222, transparent) fixed;
 
     h2 {
-        font-size: 200%;
+        font-size: 250%;
         padding: 0 0 10px 0;
+        // background: url('../img/trophy.svg') no-repeat center top;
+        // background-size: 50px 50px;
+        img {
+            fill: #569e26;
+        }
     }
 
     ul {
@@ -27,6 +39,7 @@
     }
     li {
         position: relative;
+        // z-index: 1;
         box-sizing: border-box;
         float: left;
         width: 31%; // 33.25%
@@ -44,10 +57,28 @@
     li:last-child {
         margin: 0;
     }
-    li:before{
+    li:after {
         content: "";
         display: block;
         padding-top: 100%;  /* ratio of 1:1*/
+    }
+    li:before {
+        content: "";
+        background: red;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        z-index: -1;
+        border-radius: 999px;
+        box-shadow: inset -1px -1px 2px rgba(255,255,255,0.3),
+            inset -5px -15px 40px rgba(255,255,255,0.1),
+            inset 1px 1px 2px rgba(0,0,0,0.5),
+            inset 5px 15px 40px rgba(0,0,0,0.2),
+            -2px -40px 50px -20px rgba(255,255,255,0.1),
+            2px 35px 50px -10px rgba(0,0,0,0.4),
+            0px 0px 25px 8px rgba(60,60,60,1);
     }
     .content {
         position: absolute;
@@ -56,20 +87,31 @@
         right: 0;
         bottom: 0;
         padding-top: 30%;
+        // color: #222;
     }
 
     .number {
         display: block;
         padding-bottom: 10px;
         font-size: 600%;
+        line-height: 90%;
     }
 
     // Value gradients (gold, silver, bronze)
-    .gradient-1 {
+    .gradient-1x { // Gold
         background: #F7971E; /* fallback for old browsers */
         background: -webkit-linear-gradient(right, #F7971E, #FFD200);
         background: -o-linear-gradient(right, #F7971E, #FFD200);
         background: linear-gradient(to left, #F7971E, #FFD200); /* Chrome 10-25, Safari 5.1-6 */
-        color: #222;
+    }
+    .gradient-2x { // Silver
+        background: #bdc3c7; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #bdc3c7 , #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #bdc3c7 , #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    .gradient-3x { // Bronze
+        background: #f46b45; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #f46b45 , #eea849); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #f46b45 , #eea849); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 }

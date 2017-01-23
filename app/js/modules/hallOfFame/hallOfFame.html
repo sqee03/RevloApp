@@ -1,7 +1,10 @@
 <ul>
     <li class="gradient-{{$index+1}}" ng-repeat="user in hallOfFame | orderBy:'-total_points'">
         <div class="content">
-            <h2>{{user.fan}}</h2>
+            <h2>
+                <img src="img/trophy.svg" class="svg-inject" alt="" />
+                {{user.fan}}
+            </h2>
             <span class="number" count-up end-val="user.total_points" duration="counterConfig.duration" options="counterConfig.options"></span>
             <br />
             Watched stream for: {{user.total_points | time:'mm':'dd d, hh h, mm m':false}}
