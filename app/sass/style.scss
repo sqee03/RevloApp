@@ -17,6 +17,7 @@ body {
 	color: #fff;
 	background: #222;
 }
+
 ul, li, h1, h2, h3 {
 	margin: 0;
 	padding: 0;
@@ -55,6 +56,7 @@ $header-height: 70px;
 
 header {
 	position: fixed;
+	z-index: 100;
 	left: 0;
 	top: 50px;
 	height: $header-height;
