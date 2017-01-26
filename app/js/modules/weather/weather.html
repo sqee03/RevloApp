@@ -1,8 +1,8 @@
 <div>
-    <h2>Current weather in Prague:</h2>
-
     <div class="box">
-        <svg ng-if="weather == 'Clear sky'"
+        <h2>Aktuální teplota: {{city}}</h2>
+
+        <svg ng-if="weather == 'Clear sky' || weather == 'Clear'"
             version="1.1"
             id="sun"
             class="climacon climacon_sun"
@@ -40,7 +40,7 @@
             </g>
         </svg><!-- sun -->
 
-        <svg ng-if="weather == 'Scattered clouds'"
+        <svg ng-if="weather == 'Clouds' || weather == 'Scattered clouds'"
             version="1.1"
             id="cloud"
             class="climacon climacon_cloud"

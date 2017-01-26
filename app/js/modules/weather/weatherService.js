@@ -40,7 +40,26 @@ angular.module('weather')
             return d.promise;
         };
 
+        /**
+         * Get random location from pool of locations
+         *
+         * @memberOf module:weather
+         * @returns {Object} location details - name and GPS coordinates of randomly selected location
+         */
+        function getRandomLocation() {
+            var poolOfLocations = [
+                { name: 'Údolí Smrti - Kalifornie', lat: 36.5322649, lon: -116.9325408 }, // Death Valley - California
+                { name: 'Vesnice Oymyakon - Rusko', lat: 63.460899, lon: 142.785812 }, // Oymyakon - Russia
+                { name: 'Kypr (sídlo Wargmaming.net)', lat: 35.166672, lon: 33.3666695 }, // Nocosia - Cyprus
+                { name: 'Gran Canaria - Kanárské Ostrovy', lat: 28.116541, lon: -15.43898 }, // Gran Canaria - Canary Islands
+                { name: 'Kapské Město - Afrika', lat: -33.918861, lon: 18.423300 } // Cape Town - Africa
+            ];
+
+            return poolOfLocations[Math.floor(Math.random()*poolOfLocations.length)];
+        };
+
         return {
-            getWeather: getWeather
+            getWeather: getWeather,
+            getRandomLocation: getRandomLocation
         }
 });

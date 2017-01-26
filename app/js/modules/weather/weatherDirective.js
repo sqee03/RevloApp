@@ -11,6 +11,10 @@ angular.module('weather')
          */
 
         return {
+            scope: {
+                city: '@city',
+                random: '@random'
+            },
             restrict: 'E',
             replace: true,
             controller: 'weatherCtrl',

@@ -1,9 +1,8 @@
-<div>
-    <ul>
-        <li ng-repeat="reward in rewards" class="reward">
-            <h3 ng-click="isCollapsed = !isCollapsed">{{reward.title}}</h3>
-            <img ng-if="reward.img_url" src="{{reward.img_url}}" alt="reward.description" />
-            <pre ng-show="isCollapsed">{{reward | json}}</pre>
-        </li>
-    </ul>
-</div>
+<ul>
+    <li ng-repeat="reward in rewards | orderBy: 'points'" class="reward" ng-class="{'discord': reward.reward_id == 131606}">
+        <h3>{{reward.title}}</h3>
+        <!--<em>{{reward.description}}</em>-->
+        <img ng-if="reward.img_url" src="{{reward.img_url}}" alt="reward.description" />
+        <strong>{{reward.points}}</strong>
+    </li>
+</ul>

@@ -27,7 +27,7 @@ h1, h2, h3 {
 }
 h1 {
 	margin: 0;
-	padding: 20px 0;
+	padding: 10px 0;
 	font-size: 500%;
 	font-style: italic;
 }
@@ -63,6 +63,7 @@ header {
 	padding-left: $header-height + ($header-height/4);
 	background: url('../img/logo.png') no-repeat 10px center;
 	background-size: auto 95%;
+
 	em {
 		display: block;
 		height: 100%;
@@ -72,5 +73,35 @@ header {
 		font-size: 175%;
 		border-left: 2px solid #FE07E8;
 		background-color: rgba(254,7,232,0.15);
+	}
+}
+
+/*
+* ------------------------------------
+*    Footer
+* ------------------------------------
+*/
+$footer-height: 70px;
+
+footer {
+	position: fixed;
+	z-index: 100;
+	right: 0;
+	bottom: 50px;
+	height: $footer-height;
+	padding-right: ($footer-height/4);
+	font-size: 175%;
+	background-color: rgba(0,0,0,0.4);
+	color: #fff;
+
+	span {
+		display: inline-block;
+		padding: 0 ($footer-height/4);
+		margin-right: ($footer-height/4);
+		line-height: $header-height;
+		font-weight: 400;
+		border-right: 2px solid #FE07E8;
+		background-color: rgba(254,7,232,0.4);
+		text-transform: uppercase;
 	}
 }

@@ -1,3 +1,5 @@
+@import '_mixins.scss';
+
 /*
 * ------------------------------------
 *    Hall of fame
@@ -114,4 +116,17 @@
         background: -webkit-linear-gradient(to left, #f46b45 , #eea849); /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to left, #f46b45 , #eea849); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
+}
+.hall-of-fame:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url('../img/orange-pink-triangles.jpg') no-repeat 0 0;
+    background-size: 100% 100%;
+    @include vendor-prefix('opacity', '0.5');
 }
