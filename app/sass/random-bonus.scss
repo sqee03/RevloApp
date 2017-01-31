@@ -1,0 +1,23 @@
+@import '_mixins.scss';
+
+/*
+* ------------------------------------
+*    Random bonus
+* ------------------------------------
+*/
+.random-bonus {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    text-align: center;
+
+    h1 {
+        width: auto;
+        margin: 0 auto;
+    }
+}

@@ -28,7 +28,8 @@ angular.module('revloApp', [
         'rewards',
         'user',
         'hallOfFame',
-        'weather'
+        'weather',
+        'randomBonus'
     ])
 
     .config(
@@ -87,6 +88,13 @@ angular.module('revloApp', [
                     parent: 'app',
                     templateUrl: 'views/weather.html'
                 }
+                // Random bonus
+                var randomBonus = {
+                    name: 'app.randomBonus',
+                    url: '/random-bonus',
+                    parent: 'app',
+                    templateUrl: 'views/random-bonus.html'
+                }
                 // Default redirect
                 $urlRouterProvider.otherwise('/');
 
@@ -96,6 +104,7 @@ angular.module('revloApp', [
                 $stateProvider.state(user);
                 $stateProvider.state(hallOfFame);
                 $stateProvider.state(weather);
+                $stateProvider.state(randomBonus);
     })
 
     .run(function($rootScope, dataContractService) {

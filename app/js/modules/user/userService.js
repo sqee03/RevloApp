@@ -41,7 +41,36 @@ angular.module('user')
             return d.promise;
         };
 
+        /**
+         * Add or remove user's points
+         *
+         * @memberOf module:user
+         * @param {String} user - Twitch user name
+         * @param {Number} integer - How many points should be added/removed
+         * @returns {Object} Updated user info
+         */
+        function updateUserPoints(user, points) {
+            var d = $q.defer();
+            var url = dataContractService.getRevlo('user').base + user + dataContractService.getRevlo('user').bonus;
+            var params = {'amount': points};
+
+            // Fetch new data
+            apiCalls.postRevloData(url, params).then(function(updatedData) {
+                if (updatedData) {
+                    d.resolve(updatedData.data);
+                }
+                // Handle situation when server failed to update user's data
+                else {
+                    growl.error('User data update failed');
+                    d.reject(false);
+                }
+            });
+
+            return d.promise;
+        };
+
         return {
-            getUser: getUser
+            getUser: getUser,
+            updateUserPoints: updateUserPoints
         }
 });

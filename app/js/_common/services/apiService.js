@@ -23,7 +23,7 @@ angular.module('revloApp')
                 url: url,
                 headers: {'x-api-key': getFbAPIkey()}
             }
-            return makeRequest(url, config)
+            return makeRequest(config)
         }
 
         // Get data from Revlo API
@@ -34,7 +34,18 @@ angular.module('revloApp')
                 params: ( params != null ) ? params : undefined,
                 headers: {'x-api-key': getRevloAPIkey()}
             }
-            return makeRequest(url, config)
+            return makeRequest(config)
+        }
+
+        // Update Revlo data
+        function postRevloData(url, params) {
+            var config = {
+                method: 'POST',
+                url: url,
+                data: ( params != null ) ? params : undefined,
+                headers: {'x-api-key': getRevloAPIkey()}
+            }
+            return makeRequest(config)
         }
 
         // Get data from OpenWeatherMap API
@@ -44,15 +55,16 @@ angular.module('revloApp')
                 url: url,
                 params: ( params != null ) ? params : undefined
             }
-            return makeRequest(url, config)
+            return makeRequest(config)
         }
 
         // Make Http request
-        function makeRequest(url, config) {
+        function makeRequest(config) {
             var d = $q.defer();
 
             $http(config)
                 .then(function (data) {
+                    console.log('response: ', data);
                     d.resolve(data);
                 })
                 .catch(function (error) {
@@ -64,7 +76,9 @@ angular.module('revloApp')
         };
 
     	return {
+            makeRequest: makeRequest,
     		getRevloData: getRevloData,
+            postRevloData: postRevloData,
             getWeatherData: getWeatherData,
             getFbData: getFbData
     	}

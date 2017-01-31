@@ -46,6 +46,7 @@ angular.module('revloApp')
                 // User
                 revloDataContract.user.base = baseUrl + json.data.user.url + '/';
                 revloDataContract.user.points = '/' + json.data.user.points;
+                revloDataContract.user.bonus = '/' + json.data.user.points + '/' + json.data.user.bonus;
 
                 d.resolve(revloDataContract);
             }).catch(function(error) {
