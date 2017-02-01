@@ -1,9 +1,18 @@
 <div>
     Adding bonus to:
     <ul>
-        <li ng-repeat="user in randomlyPickedUsers">{{user.user}} / {{user.points}} bodů</li>
+        <li ng-repeat="user in awardedUsers">{{user.input.user}} / {{user.input.points}} bodů</li>
     </ul>
 
     <hr>
-    {{randomSelect}}
+    {{awardedUsers}}
+
+    <hr>
+
+    <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+        <div class="title">{{awardedUsers[0].input.user}}</div>
+    </div>
 </div>

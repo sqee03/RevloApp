@@ -64,7 +64,6 @@ angular.module('revloApp')
 
             $http(config)
                 .then(function (data) {
-                    console.log('response: ', data);
                     d.resolve(data);
                 })
                 .catch(function (error) {
