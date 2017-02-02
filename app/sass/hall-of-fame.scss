@@ -5,10 +5,14 @@
 *    Hall of fame
 * ------------------------------------
 */
-@mixin plastic-effect {
-    // box-shadow: 0px 16px 20px 0px rgba(0, 0, 0, .3), inset 0px 2px 1px 1px rgba(255,255,255,0.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+$gold-1: #F7971E;
+$gold-2: #FFD200;
+$silver-1: #bdc3c7;
+$silver-2: #2c3e50;
+$bronze-1: #f46b45;
+$bronze-2: #eea849;
 
-    text-shadow: -1px -1px 0px rgba(255,255,255,0.1), 1px 1px 2px rgba(0,0,0,1);
+@mixin plastic-effect {
     box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3),
                 inset 3px 15px 45px rgba(255,255,255,0.1),
                 inset -1px -1px 2px rgba(0,0,0,0.5),
@@ -21,40 +25,45 @@
     width: 100%;
     height: 100%;
     min-height: 100%;
-    padding: 30px 200px;
+    padding: 30px 0;
     text-align: center;
     // background: #555 linear-gradient(to left top, #222, transparent) fixed;
 
     h2 {
         font-size: 250%;
         padding: 0 0 10px 0;
-        // background: url('../img/trophy.svg') no-repeat center top;
-        // background-size: 50px 50px;
-        img {
-            fill: #569e26;
-        }
     }
 
     ul {
-        padding-top: 20px;
-        min-height: 31%;
+        margin: auto;
+        display: flex;
+        flex-flow: row wrap;
+        align-content: center;
+        width: 80%;
+        height: 80%;
+        list-style-type: none;
     }
     li {
         position: relative;
-        // z-index: 1;
         box-sizing: border-box;
-        float: left;
-        width: 31%; // 33.25%
-        // height: 31%;
-        margin-right: 3.3%;
-        padding: 50px;
-        list-style-type: none;
+        flex: 1;
+        flex-basis: 28.29%;
+        height: 80%;
+        margin: auto;
+        margin-right: 5%;
+        padding: 20px 0;
         text-align: center;
-        font-size: 150%;
-        background: rgba(0,0,0,0.2);
-        border-radius: 50%;
 
-        @include plastic-effect()
+        font-size: 100%;
+        background: rgba(0,0,0,0.2);
+        border-width: 5px;
+
+        @include plastic-effect();
+
+        img {
+            width: 70%;
+            height: auto;
+        }
     }
     li:last-child {
         margin: 0;
@@ -62,25 +71,7 @@
     li:after {
         content: "";
         display: block;
-        padding-top: 100%;  /* ratio of 1:1*/
-    }
-    li:before {
-        content: "";
-        background: rgba(255,255,255,0.4);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: -15px;
-        left: -15px;
-        z-index: -1;
-        border-radius: 999px;
-        box-shadow: inset -1px -1px 2px rgba(255,255,255,0.3),
-            inset -5px -15px 40px rgba(255,255,255,0.1),
-            inset 1px 1px 2px rgba(0,0,0,0.5),
-            inset 5px 15px 40px rgba(0,0,0,0.2),
-            -2px -40px 50px -20px rgba(255,255,255,0.1),
-            2px 35px 50px -10px rgba(0,0,0,0.4),
-            0px 0px 25px 8px rgba(60,60,60,1);
+        padding-top: 100%;  /* ratio of 1:1 */
     }
     .content {
         position: absolute;
@@ -88,33 +79,29 @@
         left: 0;
         right: 0;
         bottom: 0;
-        padding-top: 30%;
-        // color: #222;
+        padding-top: 10%;
     }
 
     .number {
         display: block;
         padding-bottom: 10px;
-        font-size: 600%;
+        font-size: 400%;
         line-height: 90%;
+        color: #fff;
     }
 
-    // Value gradients (gold, silver, bronze)
-    .gradient-1x { // Gold
-        background: #F7971E; /* fallback for old browsers */
-        background: -webkit-linear-gradient(right, #F7971E, #FFD200);
-        background: -o-linear-gradient(right, #F7971E, #FFD200);
-        background: linear-gradient(to left, #F7971E, #FFD200); /* Chrome 10-25, Safari 5.1-6 */
+    // Award coloring (gold, silver, bronze)
+    .color-1 { // Gold
+        @include border-gradient($gold-1, $gold-2);
+        color: $gold-2;
     }
-    .gradient-2x { // Silver
-        background: #bdc3c7; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to left, #bdc3c7 , #2c3e50); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to left, #bdc3c7 , #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    .color-2 { // Silver
+        @include border-gradient($silver-1, $silver-2);
+        color: $silver-1;
     }
-    .gradient-3x { // Bronze
-        background: #f46b45; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to left, #f46b45 , #eea849); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to left, #f46b45 , #eea849); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    .color-3 { // Bronze
+        @include border-gradient($bronze-1, $bronze-2);
+        color: $bronze-1;
     }
 }
 .hall-of-fame:before {
@@ -126,7 +113,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: url('../img/orange-pink-triangles.jpg') no-repeat 0 0;
-    background-size: 100% 100%;
+    // background: url('../img/orange-pink-triangles.jpg') no-repeat 0 0;
+    // background-size: 100% 100%;
     @include vendor-prefix('opacity', '0.5');
 }

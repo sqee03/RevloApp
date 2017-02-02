@@ -5,3 +5,20 @@
     #{$vendor}#{$name}: #{$value};
   }
 }
+
+@mixin linear-gradient($angle, $gradient1, $gradient2) {
+  background: $gradient2; /* Fallback Color */
+  background: -webkit-gradient(linear, $angle, from($gradient1), to($gradient2)); /* Saf4+, Chrome */
+  background: -webkit-linear-gradient($angle, $gradient1, $gradient2); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background:    -moz-linear-gradient($angle, $gradient1, $gradient2); /* FF3.6 */
+  background:     -ms-linear-gradient($angle, $gradient1, $gradient2); /* IE10 */
+  background:      -o-linear-gradient($angle, $gradient1, $gradient2); /* Opera 11.10+ */
+  background:         linear-gradient($angle, $gradient1, $gradient2);
+}
+
+@mixin border-gradient($color1, $color2) {
+  -webkit-border-image: -webkit-linear-gradient($color1, $color2) 10% stretch;
+  -moz-border-image: -moz-linear-gradient($color1, $color2) 10% stretch;
+  -o-border-image: -o-linear-gradient($color1, $color2) 10% stretch;
+  border-image: linear-gradient($color1, $color2) 10% stretch;
+}
