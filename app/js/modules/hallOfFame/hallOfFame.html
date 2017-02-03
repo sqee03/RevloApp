@@ -1,14 +1,18 @@
 <ul>
     <li class="color-{{$index+1}}" ng-repeat="user in hallOfFame | orderBy:'-total_points'">
+        <div class="trianglify" trianglify color="colorSchemes[$index]"></div>
+
         <div class="content">
             <h2>
                 {{user.fan}}
             </h2>
+
             <img ng-if="$index == 0" src="img/trophy.svg" class="svg-inject" alt="" />
             <img ng-if="$index != 0" src="img/award.svg" class="svg-inject" alt="" />
+
             <span class="number" count-up end-val="user.total_points" duration="counterConfig.duration" options="counterConfig.options"></span>
-            <br />
-            Watched stream for: {{user.total_points | time:'mm':'dd d, hh h, mm m':false}}
+
+            <em>Body nasbíral(a) sledováním za: {{user.total_points | time:'mm':'dd dnů, hh hodin, mm minut':false}}</em>
         </div>
     </li>
 </ul>

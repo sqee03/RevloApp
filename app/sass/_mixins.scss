@@ -16,6 +16,16 @@
   background:         linear-gradient($angle, $gradient1, $gradient2);
 }
 
+@mixin radial-gradient($shape, $size, $color1, $color2) {
+  background: $color2; /* Fallback Color */
+  background: -webkit-gradient($shape $size, from($color1), to($color2)); /* Saf4+, Chrome */
+  background: -webkit-radial-gradient($shape $size, $color1, $color2); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background:    -moz-radial-gradient($shape $size, $color1, $color2); /* FF3.6 */
+  background:     -ms-radial-gradient($shape $size, $color1, $color2); /* IE10 */
+  background:      -o-radial-gradient($shape $size, $color1, $color2); /* Opera 11.10+ */
+  background:         radial-gradient($shape $size, $color1, $color2);
+}
+
 @mixin border-gradient($color1, $color2) {
   -webkit-border-image: -webkit-linear-gradient($color1, $color2) 10% stretch;
   -moz-border-image: -moz-linear-gradient($color1, $color2) 10% stretch;

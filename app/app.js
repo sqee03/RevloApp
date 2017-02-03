@@ -7,6 +7,7 @@ angular.module('revloApp', [
         'countUpModule', // animated number counter
         'momentjs', // custom req. library
         'lodash', // custom req. library
+        // 'stefanoschrs.angular-trianglify', // trianglify background generator
 
         // Offlinejs
         'offlinejs',

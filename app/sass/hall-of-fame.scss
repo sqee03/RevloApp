@@ -5,42 +5,36 @@
 *    Hall of fame
 * ------------------------------------
 */
-$gold-1: #F7971E;
-$gold-2: #FFD200;
+$gold-1: #FFD200;
+$gold-2: #F7971E;
 $silver-1: #bdc3c7;
 $silver-2: #2c3e50;
-$bronze-1: #f46b45;
-$bronze-2: #eea849;
+$bronze-1: #eea849;
+$bronze-2: #f46b45;
+$border-width: 4px;
 
-@mixin plastic-effect {
-    box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3),
-                inset 3px 15px 45px rgba(255,255,255,0.1),
-                inset -1px -1px 2px rgba(0,0,0,0.5),
-                inset -3px -15px 45px rgba(0,0,0,0.2),
-                1px 5px 30px -4px rgba(0,0,0,1);
+@mixin shadow-effect {
+    box-shadow: 1px 5px 30px -4px rgba(0,0,0,1);
 }
 
 .hall-of-fame {
+    position: relative;
+    z-index: 1;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     min-height: 100%;
     padding: 30px 0;
     text-align: center;
-    // background: #555 linear-gradient(to left top, #222, transparent) fixed;
-
-    h2 {
-        font-size: 250%;
-        padding: 0 0 10px 0;
-    }
+    @include radial-gradient(circle, at top center, rgb(132, 1, 159), rgba(0,0,0,0.1));
 
     ul {
         margin: auto;
         display: flex;
         flex-flow: row wrap;
         align-content: center;
-        width: 80%;
-        height: 80%;
+        width: 65%;
+        height: 75%;
         list-style-type: none;
     }
     li {
@@ -51,55 +45,99 @@ $bronze-2: #eea849;
         height: 80%;
         margin: auto;
         margin-right: 5%;
-        padding: 20px 0;
         text-align: center;
-
         font-size: 100%;
-        background: rgba(0,0,0,0.2);
-        border-width: 5px;
+        border-width: $border-width;
+        background-color: rgba(0,0,0,0.75);
+        overflow: hidden;
 
-        @include plastic-effect();
+        @include shadow-effect();
 
-        img {
-            width: 70%;
-            height: auto;
+        .trianglify {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.9;
+            left: 0;
+            top: 0;
+            width: 101%;
+            height: 101%;
+            -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+
+            * {
+                flex: 1;
+                margin-bottom: 1px;
+                display: inline-block;
+                vertical-align: middle;
+            }
+            h2 {
+                flex: 1 0;
+                font-size: 350%;
+                font-weight: 300;
+                padding: 50px 0 30px 0;
+                color: #fff;
+            }
+            img {
+                flex: 2 100%;
+                width: 45%;
+                height: auto;
+                margin: 0 auto;
+            }
+            .number {
+                flex: 1 20%;
+                padding: 0 0 40px 0;
+                font-size: 600%;
+                font-style: italic;
+                line-height: 90%;
+            }
+            em {
+                flex: 1 0;
+                padding: 15px;
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
+                align-self: flex-end;
+                font-size: 110%;
+                font-weight: 400;
+            }
         }
     }
     li:last-child {
         margin: 0;
     }
-    li:after {
-        content: "";
-        display: block;
-        padding-top: 100%;  /* ratio of 1:1 */
-    }
-    .content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding-top: 10%;
-    }
-
-    .number {
-        display: block;
-        padding-bottom: 10px;
-        font-size: 400%;
-        line-height: 90%;
-        color: #fff;
-    }
 
     // Award coloring (gold, silver, bronze)
     .color-1 { // Gold
+        order: 2;
         @include border-gradient($gold-1, $gold-2);
         color: $gold-2;
+
+        .content {
+            img {
+                width: 70%;
+            }
+            em {
+                padding: 8px 15px;
+                padding-bottom: 8px - $border-width;
+                background-color: $gold-2;
+                color: #000;
+            }
+        }
     }
     .color-2 { // Silver
+        order: 1;
         @include border-gradient($silver-1, $silver-2);
         color: $silver-1;
     }
     .color-3 { // Bronze
+        order: 3;
         @include border-gradient($bronze-1, $bronze-2);
         color: $bronze-1;
     }
