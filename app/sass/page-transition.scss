@@ -1,0 +1,60 @@
+/*
+* ------------------------------------
+*    Animations for routes
+* ------------------------------------
+*/
+
+$duration: 0.75s;
+
+/* TRANSITION ANIMATIONS FOR MAIN VIEW
+------------------------------------------*/
+.scroll {
+   transform: translate3d(0, 0, 0);
+   height: 100%;
+   width: 100%;
+
+  .scrolled {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  &.slide {
+    .scrolled {
+      transition: left $duration ease;
+      left: 0;
+    }
+  }
+}
+
+.scroll.slide {
+  .scrolled {
+    &.ng-enter {
+      left: 100%;
+    }
+    &.ng-enter-active {
+      left: 0;
+    }
+    &.ng-leave {
+      left: 0;
+    }
+    &.ng-leave-active {
+      left: -100%;
+    }
+  }
+  .backward {
+    .scrolled {
+      &.ng-leave {
+        left: 0;
+      }
+      &.ng-leave-active {
+        left: 100%;
+      }
+      &.ng-enter {
+        left: -100%;
+      }
+      &.ng-enter-active {
+        left: 0;
+      }
+    }
+  }
+}

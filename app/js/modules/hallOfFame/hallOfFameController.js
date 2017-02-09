@@ -4,7 +4,6 @@ angular.module('hallOfFame')
 
 .controller('hallOfFameCtrl',
     function ($scope, $q, hallOfFameService, configService) {
-
         // Configuration for animated counter
         $scope.counterConfig = {
             duration: 8,

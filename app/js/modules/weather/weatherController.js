@@ -3,7 +3,7 @@
 angular.module('weather')
 
 .controller('weatherCtrl',
-    function ($scope, weatherService) {
+    function ($scope, $timeout, $state, weatherService) {
         // Openweathermap.org API key:
         // 6bfdd42cc8b00106162eeedf9ed7456b
 
@@ -39,4 +39,8 @@ angular.module('weather')
         else {
             getWeather($scope.city);
         }
+
+        // $timeout(function() {
+        //     $state.go('app.hof');
+        // }, 3000);
 });

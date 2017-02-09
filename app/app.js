@@ -43,7 +43,17 @@ angular.module('revloApp', [
                 var root = {
                     name: 'app',
                     abstract: true,
-                    template: '<ui-view/>',
+                    template: '<ui-view class="scrolled"></ui-view>',
+                    controller: function($scope, $rootScope, $element) {
+                        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState) {
+                        var forward = toState.name > fromState.name;
+                        if (forward) {
+                            $element.removeClass('backward');
+                        } else {
+                            $element.addClass('backward');
+                        }
+                        });
+                    },
                     resolve: {
                         Config: 'configService',
                         config: function (configService) {
@@ -96,6 +106,14 @@ angular.module('revloApp', [
                     parent: 'app',
                     templateUrl: 'views/random-bonus.html'
                 }
+                // Test page
+                var test = {
+                    name: 'app.test',
+                    url: '/test',
+                    parent: 'app',
+                    templateUrl: 'views/test.html'
+                }
+
                 // Default redirect
                 $urlRouterProvider.otherwise('/');
 
@@ -106,6 +124,7 @@ angular.module('revloApp', [
                 $stateProvider.state(hallOfFame);
                 $stateProvider.state(weather);
                 $stateProvider.state(randomBonus);
+                $stateProvider.state(test);
     })
 
     .run(function($rootScope, dataContractService) {
