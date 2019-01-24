@@ -58,3 +58,18 @@ $duration: 0.75s;
     }
   }
 }
+
+// Disable performance heavy effects during page transitions
+.ng-enter, .ng-enter-active, .ng-leave, .ng-leave-active {
+    .particles {
+        display: none;
+    }
+    // & > * > * {
+    //   display: none !important;
+    // }
+    // Disable shadows for all elements
+    * {
+        box-shadow: none;
+        text-shadow: none;
+    }
+}

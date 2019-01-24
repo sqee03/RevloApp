@@ -1,5 +1,5 @@
 <ul>
-    <li ng-repeat="reward in rewards | orderBy: 'points'" class="reward" ng-class="{'discord': reward.reward_id == 131606}">
+    <li ng-repeat="reward in rewards | orderBy: 'points'" class="reward">
         <h3>{{reward.title}}</h3>
         <!--<em>{{reward.description}}</em>-->
         <img ng-if="reward.img_url" src="{{reward.img_url}}" alt="reward.description" />

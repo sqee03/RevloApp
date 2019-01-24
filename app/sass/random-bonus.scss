@@ -5,6 +5,13 @@
 *    Random bonus
 * ------------------------------------
 */
+
+// Variables
+$box-size: 200px;
+$box-color: pink;
+$box-edges-color: red;
+
+
 .random-bonus {
     position: relative;
     z-index: 2;
@@ -21,73 +28,91 @@
         margin: 0 auto;
     }
 
+    .container {
+        perspective: 900;
+        perspective-origin: 50% -#{$box-size * 1.5};
+    }
+
     .box {
-        width: 300px;
-        height: 300px;
-        border-radius: 5px;
-        box-shadow: 0 2px 30px rgba(black, .2);
-        background: lighten(#f0f4c3, 10%);
+        width: $box-size;
+        height: $box-size;
         position: relative;
-        overflow: hidden;
-        transform: translate3d(0, 0, 0);
+        margin: 100px auto;
+        @include vendor-prefix('transform-style','preserve-3d');
+        @include vendor-prefix('transform', 'rotateY(60deg)');
+    }
+    .box:hover {
+        @include vendor-prefix('animation', 'spin 2s cubic-bezier(1.000, 0.005, 0.520, 1.000) infinite');
+        @include vendor-prefix('animation-fill-mode', 'forwards');
     }
 
-    .wave {
-        opacity: .4;
+    .side {
+        width: $box-size;
+        height: $box-size;
+        background: $box-color;
+        border: 1px solid $box-edges-color;
         position: absolute;
-        top: 3%;
-        left: 50%;
-        background: #0af;
-        width: 500px;
-        height: 500px;
-        margin-left: -250px;
-        margin-top: -250px;
-        transform-origin: 50% 48%;
-        border-radius: 43%;
-        animation: drift 3000ms infinite linear;
+        border-radius: $box-size / 10;
     }
 
-    .wave.-three {
-        animation: drift 2500ms infinite linear;
-    }
-
-    .wave.-two {
-        animation: drift 5000ms infinite linear;
-        opacity: .1;
-        background: yellow;
-    }
-
-    .box:after {
-        content: '';
-        display: block;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
-        z-index: 11;
-        transform: translate3d(0, 0, 0);
-    }
-
-    .title {
+    .side-1 {
+        width: $box-size;
+        height: $box-size;
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        z-index: 1;
-        line-height: 300px;
-        text-align: center;
-        transform: translate3d(0, 0, 0);
-        color: white;
-        text-transform: uppercase;
-        font-family: 'Playfair Display', serif;
-        letter-spacing: .4em;
-        font-size: 24px;
-        text-shadow: 0 1px 0 rgba(black, .1);
-        text-indent: .3em;
+        @include vendor-prefix('transform', 'rotateX(90deg) translateZ(#{$box-size / 2})');
+        @include vendor-prefix('transform-style', 'preserve-3d');
     }
-    @keyframes drift {
-        from { transform: rotate(0deg); }
-        from { transform: rotate(360deg); }
+
+    .side-2 {
+        line-height: 30px;
+        font-size:14px;
+        text-align:center;
+        @include vendor-prefix('transform', 'translateZ(#{$box-size / 2})');
+    }
+
+    .side-3 {
+        @include vendor-prefix('transform', 'rotateY(90deg) translateZ(#{$box-size / 2})');
+    }
+
+    .side-4 {
+        @include vendor-prefix('transform', 'rotateX(-90deg) rotate(180deg) translateZ(#{$box-size / 2})');
+    }
+
+    .side-5 {
+        @include vendor-prefix('transform', 'rotateY(180deg) translateZ(#{$box-size / 2})');
+    }
+
+    .side-6 {
+        @include vendor-prefix('transform', 'rotateY(-90deg) translateZ(#{$box-size / 2})');
+    }
+
+    .inner-side {
+        @include vendor-prefix('transition', '0.8s 1.5s all cubic-bezier(1.000, 0.005, 0.520, 1.000)');
+    }
+
+    .flap-1, .flap-2 {
+        width: $box-size;
+        height: $box-size / 2;
+    }
+
+    .flap-1 {
+        top: $box-size / 2;
+        @include vendor-prefix('transform-origin', '0px #{$box-size / 2}');
+    }
+    .flap-2 {
+        @include vendor-prefix('transform-origin', '#{$box-size} 0px');
+    }
+
+    .box:hover .flap-1 {
+        @include vendor-prefix('transform', 'rotateX(-120deg)');
+    }
+    .box:hover .flap-2 {
+        @include vendor-prefix('transform', 'rotateX(120deg)');
+    }
+
+    @include keyframes (spin) {
+        to {
+            @include vendor-prefix('transform', 'rotateY(420deg)');
+        }
     }
 }

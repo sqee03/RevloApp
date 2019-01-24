@@ -13,15 +13,29 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: 25px;
+    padding: 40px 25px;
     text-align: center;
 
+    $logo-width: 250px;
+
     h1 {
-        width: auto;
+        position: relative;
+        width: 280px;
         margin: 0 auto;
-        padding-left: 100px;
-        background: url('../img/revlo.png') no-repeat left center;
-        background-size: auto 100%;
+        padding-left: $logo-width;
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: $logo-width;
+            height: 100%;
+            background: url('../img/revlo.png') no-repeat left center;
+            background-size: auto 72%;
+            border-right: 1px solid rgba(255,255,255,0.3);
+        }
     }
 
     ul {
@@ -30,24 +44,26 @@
         flex-flow: row wrap;
         align-content: center;
         width: 100%;
-        height: 80%;
+        height: 75%;
         align-items: stretch;
         list-style-type: none;
+        overflow: hidden;
+        border-radius: 8px;
 
         li {
             position: relative;
             flex: 1;
             flex-basis: 33.25%;
-            height: 30%;
+            height: 33.25%;
             margin: auto;
             margin-right: 1px;
             margin-bottom: 1px;
-            padding: 20px 0;
+            // padding: 20px 0;
             text-align: center;
             background: rgba(0,0,0,0.4);
 
             h3 {
-                margin: 0 auto 10px auto;
+                margin: 20px auto 10px auto;
                 width: 80%;
                 font-size: 165%;
                 line-height: 110%;
@@ -55,8 +71,8 @@
             }
             img {
                 width: auto;
-                height: 75%;
-                margin: 20px auto 0 auto;
+                height: 65%;
+                margin: 5px auto 0 auto;
             }
             em {
                 display: block;
@@ -85,9 +101,6 @@
                 background-color: rgba(0,0,0,0.3);
             }
         }
-        .discord img {
-            background-color: #fff;
-        }
     }
 }
 .rewards:before {
@@ -102,4 +115,24 @@
     background: url('../img/bg-gaming.jpg') no-repeat 0 0;
     background-size: 100% 100%;
     @include vendor-prefix('opacity', '0.4');
+}
+
+// Custom styling for rewards
+$border-radius: 8px;
+
+// Discord
+img[src*="discord"] {
+    padding-top: 5px;
+    background-color: #fff;
+    border-radius: $border-radius;
+}
+// Be creative
+img[src*="creative"] {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: $border-radius;
+}
+// MOE
+img[src*="marks"] {
+    border-radius: $border-radius;
 }

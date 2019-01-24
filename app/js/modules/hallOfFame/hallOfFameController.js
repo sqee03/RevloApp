@@ -3,7 +3,7 @@
 angular.module('hallOfFame')
 
 .controller('hallOfFameCtrl',
-    function ($scope, $q, hallOfFameService, configService) {
+    function ($scope, $q, $timeout, hallOfFameService, configService) {
         // Configuration for animated counter
         $scope.counterConfig = {
             duration: 8,
@@ -34,5 +34,15 @@ angular.module('hallOfFame')
             });
         };
 
-        getHallOfFame();
+        // Peformance fixes
+
+        // Postpone view until page transition is finished
+        $timeout(function() {
+            getHallOfFame();
+        }, 2000);
+
+        // Destroy scope on leaving
+        $scope.$on('$destroy', function(){
+            $scope.hallOfFame = undefined;
+        });
 });

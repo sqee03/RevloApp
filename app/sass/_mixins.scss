@@ -6,6 +6,14 @@
   }
 }
 
+@mixin keyframes($name) {
+  @-moz-keyframes #{$name} { @content; }
+  @-webkit-keyframes #{$name} { @content; }
+  @-o-keyframes #{$name} { @content; }
+  @-ms-keyframes #{$name} { @content; }
+  @keyframes #{$name} { @content; }
+}
+
 @mixin linear-gradient($angle, $gradient1, $gradient2) {
   background: $gradient2; /* Fallback Color */
   background: -webkit-gradient(linear, $angle, from($gradient1), to($gradient2)); /* Saf4+, Chrome */

@@ -199,7 +199,7 @@ angular.module('randomBonus')
             var rangeMax = max + (max * chanceToGetSpecial);
             var bonus, decimals;
 
-            var testMode = true;
+            var testMode = true; // Make bonus 0 for testing purposes
 
             // Get random bonus number between min and max value
             if(!testMode) {

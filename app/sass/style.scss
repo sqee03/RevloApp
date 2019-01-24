@@ -18,6 +18,8 @@ body {
 	font-weight: 300;
 	color: #fff;
 	background: #000;
+	overflow: hidden; // removing scrollbars
+	perspective: 3000;
 }
 
 ul, li, h1, h2, h3 {

@@ -1,4 +1,4 @@
-<ul>
+<ul ng-if="hallOfFame">
     <li class="color-{{$index+1}}" ng-repeat="user in hallOfFame | orderBy:'-total_points' track by $index">
         <div class="trianglify" trianglify color="colorSchemes[$index]"></div>
 
