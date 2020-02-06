@@ -10,7 +10,7 @@
     "del": "^2.2.0",
     "docdash": "^0.3.0",
     "event-stream": "^3.3.2",
-    "gulp": "*",
+    "gulp": "3.9.1",
     "gulp-angular-filesort": "^1.1.1",
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-dir": "*",
@@ -29,6 +29,7 @@
     "karma-spec-reporter": "0.0.26",
     "main-bower-files": "*",
     "phantomjs-prebuilt": "^2.1.7",
+    "require-dir": "^1.2.0",
     "run-sequence": "^1.1.5"
   },
   "scripts": {
